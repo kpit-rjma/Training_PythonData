@@ -8,10 +8,11 @@ import sys
 import traceback
 
 # Change this to point to your specific AndroSensor CSV file
-filelocation = "C:\\Users\\rachela\\Documents\\phonedata.csv"
+filelocation = ".\\defaultdata.csv"
 
 # These are variables I want easily accessible to edit, so I'm storing them at the top
 optionsstring = "1 - Run Test Plot\n2 - Exit"
+selection = ""
 exitoption = "2"
 
 # Get the data
@@ -36,9 +37,14 @@ exitoption = "2"
 # Time Passed: Duration
 # Date: Date
 # Also see: https://docs.scipy.org/doc/numpy/reference/generated/numpy.genfromtxt.html
-nameslist = ["AccelX", "AccelY", "AccelZ", "GravX", "GravY", "GravZ", "LAccelX", "LAccelY", "LAccelZ", "GyroX", "GyroY", "GyroZ", "Light", "MagX", "MagY", "MagZ", "OrienX", "OrienY", "OrienZ", "Proximity", "Pressure", "Sound", "Latitude", "Longitude", "Altitude", "GoogleAlt", "GoogleATM", "Speed", "Accuracy", "Orientation", "SatelliteCount", "Duration", "Date"]
-data = numpy.genfromtxt(filelocation, delimiter=',', names=nameslist, skip_header=1)
-# print(data) # Comment out when NOT testing data grabbing
+try:
+    nameslist = ["AccelX", "AccelY", "AccelZ", "GravX", "GravY", "GravZ", "LAccelX", "LAccelY", "LAccelZ", "GyroX", "GyroY", "GyroZ", "Light", "MagX", "MagY", "MagZ", "OrienX", "OrienY", "OrienZ", "Proximity", "Pressure", "Sound", "Latitude", "Longitude", "Altitude", "GoogleAlt", "GoogleATM", "Speed", "Accuracy", "Orientation", "SatelliteCount", "Duration", "Date"]
+    data = numpy.genfromtxt(filelocation, delimiter=',', names=nameslist, skip_header=1)
+    # print(data) # Comment out when NOT testing data grabbing
+except:
+    print("There was an issue with reading in your data...")
+    print("Please check that your CSV file is available, or that the default has not moved location.")
+    selection = "2"
 
 # The following block of code (commented out) prints a test plot for you to check.
 # If this does not plot per expectations, then there might be an issue with your Numpy or MatPlotLib installations
@@ -68,7 +74,6 @@ def runtestplot():
 
 # The following block of code ensures the user is able to navigate commands and controls the
 # movement from call to call of various subroutines.
-selection = ""
 while (selection.lower() != "exit" or selection.lower() != "e" or selection != exitoption):
     print("Please type a command from the below list:")
     print("(Remember to exit graphs before returning to the console window!)")
