@@ -149,11 +149,11 @@ def runproximityovertime():
 def runmagmagovertime():
     try:
         # abs(Magnitude) = sqrt(x^2 + y^2 + z^2)
-        magnitudeX_column = numpy.square(DATA["MagX"])
-        magnitudeY_column = numpy.square(DATA["MagY"])
-        magnitudeZ_column = numpy.square(DATA["MagZ"])
-        magnitude_column = numpy.add(magnitudeX_column, magnitudeY_column)
-        magnitude_column = numpy.add(magnitude_column, magnitudeZ_column)
+        magnitude_x_column = numpy.square(DATA["MagX"])
+        magnitude_y_column = numpy.square(DATA["MagY"])
+        magnitude_z_column = numpy.square(DATA["MagZ"])
+        magnitude_column = numpy.add(magnitude_x_column, magnitude_y_column)
+        magnitude_column = numpy.add(magnitude_column, magnitude_z_column)
         magnitude_column = numpy.sqrt(magnitude_column)
 
         plt.plot((DATA["Duration"]/1000), magnitude_column)
@@ -175,11 +175,11 @@ def runmagmagovertime():
 def rungravmagovertime():
     try:
         # abs(Magnitude) = sqrt(x^2 + y^2 + z^2)
-        magnitudeX_column = numpy.square(DATA["GravX"])
-        magnitudeY_column = numpy.square(DATA["GravY"])
-        magnitudeZ_column = numpy.square(DATA["GravZ"])
-        magnitude_column = numpy.add(magnitudeX_column, magnitudeY_column)
-        magnitude_column = numpy.add(magnitude_column, magnitudeZ_column)
+        magnitude_x_column = numpy.square(DATA["GravX"])
+        magnitude_y_column = numpy.square(DATA["GravY"])
+        magnitude_z_column = numpy.square(DATA["GravZ"])
+        magnitude_column = numpy.add(magnitude_x_column, magnitude_y_column)
+        magnitude_column = numpy.add(magnitude_column, magnitude_z_column)
         magnitude_column = numpy.sqrt(magnitude_column)
 
         plt.plot((DATA["Duration"]/1000), magnitude_column)
@@ -201,11 +201,11 @@ def rungravmagovertime():
 def runaccelmagovertime():
     try:
         # abs(Magnitude) = sqrt(x^2 + y^2 + z^2)
-        magnitudeX_column = numpy.square(DATA["AccelX"])
-        magnitudeY_column = numpy.square(DATA["AccelY"])
-        magnitudeZ_column = numpy.square(DATA["AccelZ"])
-        magnitude_column = numpy.add(magnitudeX_column, magnitudeY_column)
-        magnitude_column = numpy.add(magnitude_column, magnitudeZ_column)
+        magnitude_x_column = numpy.square(DATA["AccelX"])
+        magnitude_y_column = numpy.square(DATA["AccelY"])
+        magnitude_z_column = numpy.square(DATA["AccelZ"])
+        magnitude_column = numpy.add(magnitude_x_column, magnitude_y_column)
+        magnitude_column = numpy.add(magnitude_column, magnitude_z_column)
         magnitude_column = numpy.sqrt(magnitude_column)
 
         plt.plot((DATA["Duration"]/1000), magnitude_column)
