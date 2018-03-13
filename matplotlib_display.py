@@ -13,9 +13,9 @@ import matplotlib.pyplot as plt
 FILE_LOCATION = ".\\defaultDATA.csv"
 
 # These are variables I want easily accessible to edit, so I'm storing them at the top
-OPTIONS_STRING = "1 - Run Test Plot\n2 - Light over Time\n3 - Sound over Time\n4 - Exit"
+OPTIONS_STRING = "1 - Run Test Plot\n2 - Light over Time\n3 - Sound over Time\n4 - Pressure over Time\n5 - Proximity over Time\n6 - Magnetic Field Magnitude over Time\n7 - Gravity Magnitude over Time\n8 - Acceleration Magnitude over Time\n9 - Exit"
 SELECTION = ""
-EXIT_OPTION = "4"
+EXIT_OPTION = "9"
 
 # Get the DATA
 # DATA is as follows:
@@ -46,7 +46,7 @@ try:
 except:
     print("There was an issue with reading in your DATA...")
     print("Please check that your CSV file is available, or that the default has not moved location.")
-    SELECTION = "2"
+    SELECTION = EXIT_OPTION
 
 """
 # The following block of code prints a test plot for you to check.
@@ -107,6 +107,120 @@ def runsoundovertime():
     print("Sound over Time plot attempt complete.\n")
     plt.gcf().clear()
 
+"""
+# The following block of code prints pressure over time in a line graph.
+"""
+def runpressureovertime():
+    try:
+        plt.plot((DATA["Duration"]/1000), DATA["Pressure"])
+        plt.xlabel("Duration (Seconds)")
+        plt.ylabel("Pressure Sensed")
+        plt.show()
+    except:
+        print("Something went wrong with printing this graph...")
+        print("Please test plotting first with the Test Plot option.")
+        print("If the test works, this may be due to a problem obtaining DATA.")
+        # The next line is for debugging only, leave commented out for delivery
+        print(traceback.format_exc())
+    print("Pressure over Time plot attempt complete.\n")
+    plt.gcf().clear()
+
+"""
+# The following block of code prints proximity over time in a line graph.
+"""
+def runproximityovertime():
+    try:
+        plt.plot((DATA["Duration"]/1000), DATA["Proximity"])
+        plt.xlabel("Duration (Seconds)")
+        plt.ylabel("Proximity Sensed")
+        plt.show()
+    except:
+        print("Something went wrong with printing this graph...")
+        print("Please test plotting first with the Test Plot option.")
+        print("If the test works, this may be due to a problem obtaining DATA.")
+        # The next line is for debugging only, leave commented out for delivery
+        print(traceback.format_exc())
+    print("Proximity over Time plot attempt complete.\n")
+    plt.gcf().clear()
+
+"""
+# The following block of code prints magnetic field magnitude over time in a line graph.
+"""
+def runmagmagovertime():
+    try:
+        # abs(Magnitude) = sqrt(x^2 + y^2 + z^2)
+        magnitudeX_column = numpy.square(DATA["MagX"])
+        magnitudeY_column = numpy.square(DATA["MagY"])
+        magnitudeZ_column = numpy.square(DATA["MagZ"])
+        magnitude_column = numpy.add(magnitudeX_column, magnitudeY_column)
+        magnitude_column = numpy.add(magnitude_column, magnitudeZ_column)
+        magnitude_column = numpy.sqrt(magnitude_column)
+
+        plt.plot((DATA["Duration"]/1000), magnitude_column)
+        plt.xlabel("Duration (Seconds)")
+        plt.ylabel("Magnetic Field Magnitude Sensed")
+        plt.show()
+    except:
+        print("Something went wrong with printing this graph...")
+        print("Please test plotting first with the Test Plot option.")
+        print("If the test works, this may be due to a problem obtaining DATA.")
+        # The next line is for debugging only, leave commented out for delivery
+        print(traceback.format_exc())
+    print("Magnetic Field Magnitude over Time plot attempt complete.\n")
+    plt.gcf().clear()
+
+"""
+# The following block of code prints magnetic field magnitude over time in a line graph.
+"""
+def rungravmagovertime():
+    try:
+        # abs(Magnitude) = sqrt(x^2 + y^2 + z^2)
+        magnitudeX_column = numpy.square(DATA["GravX"])
+        magnitudeY_column = numpy.square(DATA["GravY"])
+        magnitudeZ_column = numpy.square(DATA["GravZ"])
+        magnitude_column = numpy.add(magnitudeX_column, magnitudeY_column)
+        magnitude_column = numpy.add(magnitude_column, magnitudeZ_column)
+        magnitude_column = numpy.sqrt(magnitude_column)
+
+        plt.plot((DATA["Duration"]/1000), magnitude_column)
+        plt.xlabel("Duration (Seconds)")
+        plt.ylabel("Gravity Magnitude Sensed")
+        plt.show()
+    except:
+        print("Something went wrong with printing this graph...")
+        print("Please test plotting first with the Test Plot option.")
+        print("If the test works, this may be due to a problem obtaining DATA.")
+        # The next line is for debugging only, leave commented out for delivery
+        print(traceback.format_exc())
+    print("Gravity Magnitude over Time plot attempt complete.\n")
+    plt.gcf().clear()
+
+"""
+# The following block of code prints magnetic field magnitude over time in a line graph.
+"""
+def runaccelmagovertime():
+    try:
+        # abs(Magnitude) = sqrt(x^2 + y^2 + z^2)
+        magnitudeX_column = numpy.square(DATA["AccelX"])
+        magnitudeY_column = numpy.square(DATA["AccelY"])
+        magnitudeZ_column = numpy.square(DATA["AccelZ"])
+        magnitude_column = numpy.add(magnitudeX_column, magnitudeY_column)
+        magnitude_column = numpy.add(magnitude_column, magnitudeZ_column)
+        magnitude_column = numpy.sqrt(magnitude_column)
+
+        plt.plot((DATA["Duration"]/1000), magnitude_column)
+        plt.xlabel("Duration (Seconds)")
+        plt.ylabel("Acceleration Magnitude Sensed")
+        plt.show()
+    except:
+        print("Something went wrong with printing this graph...")
+        print("Please test plotting first with the Test Plot option.")
+        print("If the test works, this may be due to a problem obtaining DATA.")
+        # The next line is for debugging only, leave commented out for delivery
+        print(traceback.format_exc())
+    print("Acceleration Magnitude over Time plot attempt complete.\n")
+    plt.gcf().clear()
+
 # The following block of code ensures the user is able to navigate commands and controls the
 # movement from call to call of various subroutines.
 while (SELECTION.lower() != "exit" or SELECTION.lower() != "e" or SELECTION != EXIT_OPTION):
@@ -121,8 +235,18 @@ while (SELECTION.lower() != "exit" or SELECTION.lower() != "e" or SELECTION != E
         runlightovertime()
     elif (SELECTION.lower() == "3" or SELECTION.lower() == "sound over time" or SELECTION == "sound"):
         runsoundovertime()
+    elif (SELECTION.lower() == "4" or SELECTION.lower() == "pressure over time" or SELECTION == "pressure"):
+        runpressureovertime()
+    elif (SELECTION.lower() == "5" or SELECTION.lower() == "proximity over time" or SELECTION == "proximity"):
+        runproximityovertime()
+    elif (SELECTION.lower() == "6" or SELECTION.lower() == "magnetic over time" or SELECTION == "magnetic"):
+        runmagmagovertime()
+    elif (SELECTION.lower() == "7" or SELECTION.lower() == "gravity over time" or SELECTION == "gravity"):
+        rungravmagovertime()
+    elif (SELECTION.lower() == "8" or SELECTION.lower() == "acceleration over time" or SELECTION == "acceleration"):
+        runaccelmagovertime()
     elif (SELECTION.lower() == "exit" or SELECTION.lower() == "e" or SELECTION == EXIT_OPTION):
         print("Exiting...")
         break
     else:
-        SELECTION = input("\nCommand not recognized! Please try again...\n")
+        print("\nCommand not recognized! Please try again...\n")
