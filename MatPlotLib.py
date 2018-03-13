@@ -11,9 +11,9 @@ import traceback
 filelocation = ".\\defaultdata.csv"
 
 # These are variables I want easily accessible to edit, so I'm storing them at the top
-optionsstring = "1 - Run Test Plot\n2 - Exit"
+optionsstring = "1 - Run Test Plot\n2 - Light over Time\n3 - Sound over Time\n4 - Exit"
 selection = ""
-exitoption = "2"
+exitoption = "4"
 
 # Get the data
 # Data is as follows:
@@ -64,13 +64,38 @@ def runtestplot():
         print("pip install matplotlib")
         # The next line is for debugging only, leave commented out for delivery
         #print(traceback.format_exc())
-    print("Test plot attempt complete.")
+    print("Test plot attempt complete.\n")
+    plt.gcf().clear()
 
-# Print Light values over Time
-#subpl1 = plt.subplot()
-#subpl1.plot((data["Duration"]/1000), data["Light"])
-#subpl1.set_xlabel("Duration (Seconds)")
-#subpl1.set_ylabel("Lumens")
+def runlightovertime():
+    try:
+        plt.plot((data["Duration"]/1000), data["Light"])
+        plt.xlabel("Duration (Seconds)")
+        plt.ylabel("Light Sensed")
+        plt.show()
+    except:
+        print("Something went wrong with printing this graph...")
+        print("Please test plotting first with the Test Plot option.")
+        print("If the test works, this may be due to a problem obtaining data.")
+        # The next line is for debugging only, leave commented out for delivery
+        #print(traceback.format_exc())
+    print("Light over Time plot attempt complete.\n")
+    plt.gcf().clear()
+
+def runsoundovertime():
+    try:
+        plt.plot((data["Duration"]/1000), data["Sound"])
+        plt.xlabel("Duration (Seconds)")
+        plt.ylabel("Sound Sensed")
+        plt.show()
+    except:
+        print("Something went wrong with printing this graph...")
+        print("Please test plotting first with the Test Plot option.")
+        print("If the test works, this may be due to a problem obtaining data.")
+        # The next line is for debugging only, leave commented out for delivery
+        #print(traceback.format_exc())
+    print("Sound over Time plot attempt complete.\n")
+    plt.gcf().clear()
 
 # The following block of code ensures the user is able to navigate commands and controls the
 # movement from call to call of various subroutines.
@@ -82,7 +107,12 @@ while (selection.lower() != "exit" or selection.lower() != "e" or selection != e
 
     if (selection == "1" or selection.lower() == "run test plot" or selection.lower() == "run test"):
         runtestplot()
-    elif (selection.lower() != "exit" or selection.lower() != "e" or selection != exitoption):
+    elif (selection.lower() == "2" or selection.lower() == "light over time" or selection == "light"):
+        runlightovertime()
+    elif (selection.lower() == "3" or selection.lower() == "sound over time" or selection == "sound"):
+        runsoundovertime()
+    elif (selection.lower() == "exit" or selection.lower() == "e" or selection == exitoption):
+        print("Exiting...")
         break
     else:
         selection = input("\nCommand not recognized! Please try again...\n")
