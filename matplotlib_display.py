@@ -48,11 +48,9 @@ except:
     print("Please check that your CSV file is available, or that the default has not moved location.")
     SELECTION = EXIT_OPTION
 
-"""
 # The following block of code prints a test plot for you to check.
 # If this does not plot per expectations, then there might be an issue with your Numpy or MatPlotLib installations
 # If you run into issues, uncommenting this block out and attempting to use it is worthwhile.
-"""
 def runtestplot():
     try:
         n_value = 20
@@ -71,9 +69,7 @@ def runtestplot():
     print("Test plot attempt complete.\n")
     plt.gcf().clear()
 
-"""
 # The following block of code prints light over time in a line graph.
-"""
 def runlightovertime():
     try:
         plt.plot((DATA["Duration"]/1000), DATA["Light"])
@@ -89,9 +85,7 @@ def runlightovertime():
     print("Light over Time plot attempt complete.\n")
     plt.gcf().clear()
 
-"""
 # The following block of code prints sound over time in a line graph.
-"""
 def runsoundovertime():
     try:
         plt.plot((DATA["Duration"]/1000), DATA["Sound"])
@@ -107,9 +101,7 @@ def runsoundovertime():
     print("Sound over Time plot attempt complete.\n")
     plt.gcf().clear()
 
-"""
 # The following block of code prints pressure over time in a line graph.
-"""
 def runpressureovertime():
     try:
         plt.plot((DATA["Duration"]/1000), DATA["Pressure"])
@@ -125,9 +117,7 @@ def runpressureovertime():
     print("Pressure over Time plot attempt complete.\n")
     plt.gcf().clear()
 
-"""
 # The following block of code prints proximity over time in a line graph.
-"""
 def runproximityovertime():
     try:
         plt.plot((DATA["Duration"]/1000), DATA["Proximity"])
@@ -143,9 +133,7 @@ def runproximityovertime():
     print("Proximity over Time plot attempt complete.\n")
     plt.gcf().clear()
 
-"""
 # The following block of code prints magnetic field magnitude over time in a line graph.
-"""
 def runmagmagovertime():
     try:
         # abs(Magnitude) = sqrt(x^2 + y^2 + z^2)
@@ -169,9 +157,7 @@ def runmagmagovertime():
     print("Magnetic Field Magnitude over Time plot attempt complete.\n")
     plt.gcf().clear()
 
-"""
 # The following block of code prints magnetic field magnitude over time in a line graph.
-"""
 def rungravmagovertime():
     try:
         # abs(Magnitude) = sqrt(x^2 + y^2 + z^2)
@@ -195,9 +181,7 @@ def rungravmagovertime():
     print("Gravity Magnitude over Time plot attempt complete.\n")
     plt.gcf().clear()
 
-"""
 # The following block of code prints magnetic field magnitude over time in a line graph.
-"""
 def runaccelmagovertime():
     try:
         # abs(Magnitude) = sqrt(x^2 + y^2 + z^2)
